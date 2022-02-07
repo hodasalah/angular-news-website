@@ -1,0 +1,47 @@
+footer .navbar-brand h3 {
+  font-size: 4rem;
+}
+footer .navbar-brand span {
+  color: #fff !important;
+}
+footer h4 {
+  color: #fff;
+  position: relative;
+}
+footer h4::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 25px;
+  height: 5px;
+  background: #ed1c24;
+  left: 0;
+}
+footer i {
+  color: #ebebeb;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+}
+.links a {
+  text-decoration: none;
+  position: relative;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease-in-out;
+}
+.links a::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f054";
+  display: inline-block;
+  margin-right: 0.7rem;
+  color: #ebebeb;
+  transition: transform 0.5s ease-in-out;
+}
+
+.links a:hover,
+.links a:hover::before {
+  color: #ed1c24 !important;
+  transform: translateX(5px);
+}

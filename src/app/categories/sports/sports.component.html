@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <div class="row" *ngIf="newsData">
+    <div *ngFor="let art of newsData | async " class="col-lg-3 my-3">
+      <div class="card border-0 bg-light" style="height:480px;">
+        <div class="card-img">
+          <img height='122px' width="100%" [src]="art?.urlToImage?art.urlToImage:'assets/news.png'" [alt]="art.title" />
+        </div>
+        <div class="card-body">
+          <h5 class="my-2" [title]="art?.title">{{art?.title?.length > 50?art?.title.slice(0,50) + "..." : art.title}}
+          </h5>
+          <p class="text-muted mb-3">{{art?.description?(art?.description?.length > 100?art.description.slice(0,100) +
+            "...":art?.description):("Dolly Parton, Lionel Richie, Duran Duran and Eminem are among this year's
+            first-timers chosen for..")}}
+          </p>
+
+        </div>
+        <div class="my-3 mx-3">
+          <a class="btn btn-danger btn-sm" [href]="art.url" target="_blank">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

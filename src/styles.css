@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  font-size: 16px;
+}
+body {
+  font-size: inherit;
+  font-family: "Source Sans Pro", sans-serif;
+}
+.text-primary {
+  color: #ed1c24 !important;
+}
+.navbar-brand,
+a.navbar-brand {
+  font-family: "Six Caps", sans-serif;
+  font-size: 3rem;
+  color: #ed1c24 !important;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+.navbar-brand span {
+  color: #111;
+}
+.card {
+  transition: all 0.2s ease-in-out;
+}
+.card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateY(-5px);
+}
+.card h5 {
+  color: rgb(214, 3, 3);
+}
+.card .btn {
+  border-radius: 0.5rem 0 0.5rem;
+  border-color: transparent !important;
+  box-shadow: 0 0 6px rgb(27 22 66 / 3%), 0 14px 24px rgb(27 22 66 / 6%);
+  color: #fff;
+  padding: 0.75rem 1.75rem;
+}
