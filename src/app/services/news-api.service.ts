@@ -1,7 +1,7 @@
 import { Injectable, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { combineLatest, Observable, merge, BehaviorSubject, pipe, forkJoin } from 'rxjs';
-import { map, tap } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,24 @@ export class NewsApiService {
 
 
   constructor(private _http: HttpClient) { }
-  topHeading = this._http.get(`https://newsapi.org/v2/top-headlines?country=eg&apiKey=${this.apikey}`)
-  getTopHeading(): any {
-    return this._http.get(`https://newsapi.org/v2/top-headlines?country=eg&apiKey=${this.apikey}`).pipe(map((item: any) => item.articles))
+  handleError(err: any): Observable<never> {
+
+    let errorMessage: string;
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
+    }
+    console.error(err);
+    return throwError(errorMessage);
   }
-  newsByCategories = (q: string): any => { return this._http.get(`https://newsapi.org/v2/top-headlines?country=us&category=${q}&apiKey=${this.apikey}`).pipe(map((item: any) => item.articles)) }
-
-
+  getTopHeading(q: string): any {
+    return this._http.get(`https://newsapi.org/v2/everything?q=${q}&apiKey=${this.apikey}`).pipe(map((item: any) => item.articles), catchError(this.handleError))
+  }
+  newsByCategories = (q: string): any => {
+    return this._http.get(`https://newsapi.org/v2/top-headlines?country=us&category=${q}&apiKey=${this.apikey}`).pipe(map((item: any) => {
+      console.log(item);
+      return item.articles
+    }), catchError(this.handleError))
+  }
 }
